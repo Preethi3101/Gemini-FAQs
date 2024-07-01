@@ -32,12 +32,12 @@ def generate_faqs(df):
 
 @app.route('/generate-faqs', methods=['POST'])
 def generate_faqs_route():
-    csv_file_name = request.json.get('csv_file_name')
+    csv_file_name = request.json.get('LiveChatReport-06-01-2023 - 05-13-2024')
     if not csv_file_name:
         return jsonify({"error": "Please provide the name of the CSV file in the request."}), 400
 
     # Download the CSV file from Blob Storage
-    container_name = 'your-container-name'
+    container_name = 'inputfaq'
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=csv_file_name)
     csv_data = blob_client.download_blob().readall()
 
